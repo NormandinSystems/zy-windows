@@ -2,45 +2,38 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>ZY WINDOWS Montreal | Modern Doors, Windows & Garage Doors</title>
     <meta name="description" content="ZY Windows Montreal offers wholesale prices and professional installation for ultra-modern windows, entry doors, and garage doors. Best rates available in Quebec. Call 514-629-5689.">
     <meta name="keywords" content="ZY Windows, Montreal, windows, doors, garage doors, wholesale windows, fenêtres, portes, installation, Quebec">
-    <meta name="author" content="ZY Windows Montreal">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph for Social Media SEO -->
-    <meta property="og:title" content="ZY WINDOWS Montreal | Modern Doors, Windows & Garage Doors">
-    <meta property="og:description" content="Wholesale prices and professional installation for ultra-modern windows, entry doors, and garage doors in Montreal.">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="en_CA">
-    <meta property="og:locale:alternate" content="fr_CA">
-
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Oswald (Headers) & Roboto (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        oswald: ['Oswald', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif'],
                     },
                     colors: {
-                        brand: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            900: '#0c4a6e',
+                        navy: '#0f172a',
+                        blue: {
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        },
+                        slate: {
+                            bg: '#f8fafc',
+                            dark: '#334155',
                         }
                     }
                 }
@@ -49,340 +42,398 @@
     </script>
 
     <style>
-        /* Custom Animations & Styles */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        body { font-family: 'Roboto', sans-serif; }
+        h1, h2, h3, h4, h5, .font-oswald { font-family: 'Oswald', sans-serif; }
+
+        /* Custom Hover Effects & Animations */
+        .service-card {
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
         }
-        .dark .glass-nav {
-            background: rgba(17, 24, 39, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: #3b82f6;
         }
 
-        .gallery-img {
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+        }
+        .portfolio-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+            transition: all 0.4s ease;
+        }
+        .portfolio-item:hover .portfolio-overlay {
+            bottom: 0;
+        }
+        .portfolio-item img {
             transition: transform 0.5s ease;
         }
-        .gallery-item:hover .gallery-img {
-            transform: scale(1.05);
+        .portfolio-item:hover img {
+            transform: scale(1.1);
         }
+
+        /* Mobile Pulse CTA */
+        .mobile-cta {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        /* Active Nav Link for Language */
+        .lang-active { color: #3b82f6 !important; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans antialiased transition-colors duration-300">
+<body class="text-slate-800 bg-white antialiased touch-manipulation">
 
-    <!-- Navigation -->
-    <header class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-navy/95 backdrop-blur-sm z-50 shadow-md transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-layer-group text-brand-600 dark:text-brand-500 text-2xl"></i>
-                    <span class="font-bold text-2xl tracking-tight">ZY<span class="text-brand-600 dark:text-brand-500">WINDOWS</span></span>
-                </div>
+                <a href="#home" class="flex items-center gap-2 text-white font-oswald text-2xl font-bold tracking-wide">
+                    <i class="fa-solid fa-layer-group text-blue-500"></i>
+                    ZY <span class="text-blue-500">WINDOWS</span>
+                </a>
 
                 <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="hover:text-brand-600 dark:hover:text-brand-500 font-medium transition-colors" data-i18n="nav-home">Home</a>
-                    <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-500 font-medium transition-colors" data-i18n="nav-about">About</a>
-                    <a href="#services" class="hover:text-brand-600 dark:hover:text-brand-500 font-medium transition-colors" data-i18n="nav-services">Services</a>
-                    <a href="#gallery" class="hover:text-brand-600 dark:hover:text-brand-500 font-medium transition-colors" data-i18n="nav-gallery">Gallery</a>
-                    <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-500 font-medium transition-colors" data-i18n="nav-contact">Contact</a>
-                </nav>
+                <ul class="hidden lg:flex items-center gap-8 text-white font-medium uppercase text-sm font-oswald tracking-wider">
+                    <li><a href="#home" class="hover:text-blue-500 transition-colors" data-i18n="nav-home">Home</a></li>
+                    <li><a href="#services" class="hover:text-blue-500 transition-colors" data-i18n="nav-services">Services</a></li>
+                    <li><a href="#portfolio" class="hover:text-blue-500 transition-colors" data-i18n="nav-gallery">Our Work</a></li>
+                    <li><a href="#reviews" class="hover:text-blue-500 transition-colors" data-i18n="nav-reviews">Reviews</a></li>
+                    
+                    <!-- Language Toggle -->
+                    <li class="flex items-center gap-2 border-l border-slate-600 pl-6">
+                        <button onclick="setLanguage('en')" id="btn-en" class="hover:text-blue-500 transition-colors">EN</button>
+                        <span class="text-slate-500">|</span>
+                        <button onclick="setLanguage('fr')" id="btn-fr" class="hover:text-blue-500 transition-colors">FR</button>
+                    </li>
 
-                <!-- Tools: Lang & Theme -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <div class="flex items-center space-x-2 text-sm font-medium border border-gray-300 dark:border-gray-700 rounded-full px-3 py-1">
-                        <button onclick="setLanguage('en')" id="btn-en" class="hover:text-brand-600 transition-colors">EN</button>
-                        <span class="text-gray-400">|</span>
-                        <button onclick="setLanguage('fr')" id="btn-fr" class="hover:text-brand-600 transition-colors">FR</button>
-                    </div>
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Toggle Theme">
-                        <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
-                    </button>
-                </div>
+                    <li>
+                        <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded flex items-center gap-2 transition-colors shadow-lg">
+                            <i class="fas fa-phone-alt"></i> 514-629-5689
+                        </a>
+                    </li>
+                </ul>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center space-x-4">
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors">
-                        <i id="theme-icon-mobile" class="fa-solid fa-moon text-lg"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="text-gray-900 dark:text-gray-100 hover:text-brand-600 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
+                <!-- Mobile Hamburger -->
+                <div class="lg:hidden flex items-center gap-4">
+                    <button id="mobile-menu-btn" class="text-white text-2xl focus:outline-none">
+                        <i class="fas fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 shadow-lg absolute w-full left-0">
-            <div class="px-4 pt-2 pb-6 space-y-1">
-                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800" data-i18n="nav-home">Home</a>
-                <a href="#about" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800" data-i18n="nav-about">About</a>
-                <a href="#services" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800" data-i18n="nav-services">Services</a>
-                <a href="#gallery" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800" data-i18n="nav-gallery">Gallery</a>
-                <a href="#contact" class="block px-3 py-3 rounded-md text-base font-medium hover:bg-gray-50 dark:hover:bg-gray-800" data-i18n="nav-contact">Contact</a>
-                <div class="px-3 py-3 flex space-x-4">
-                    <button onclick="setLanguage('en')" class="font-bold underline">English</button>
-                    <button onclick="setLanguage('fr')" class="font-bold">Français</button>
-                </div>
-            </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-navy absolute w-full left-0 border-t border-slate-700 shadow-xl pb-4">
+            <ul class="flex flex-col text-center text-white font-oswald uppercase tracking-wider">
+                <li><a href="#home" class="block py-4 hover:bg-slate-dark border-b border-slate-700" data-i18n="nav-home">Home</a></li>
+                <li><a href="#services" class="block py-4 hover:bg-slate-dark border-b border-slate-700" data-i18n="nav-services">Services</a></li>
+                <li><a href="#portfolio" class="block py-4 hover:bg-slate-dark border-b border-slate-700" data-i18n="nav-gallery">Our Work</a></li>
+                <li><a href="#reviews" class="block py-4 hover:bg-slate-dark border-b border-slate-700" data-i18n="nav-reviews">Reviews</a></li>
+                <li class="py-4 flex justify-center gap-4">
+                    <button onclick="setLanguage('en')" id="btn-en-mob" class="hover:text-blue-500">EN</button>
+                    <span class="text-slate-500">|</span>
+                    <button onclick="setLanguage('fr')" id="btn-fr-mob" class="hover:text-blue-500">FR</button>
+                </li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
-        <!-- Background Image with Overlay -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 min-h-[90vh] flex items-center text-center">
+        <!-- Background -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000" alt="Modern home exterior" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gray-900/70 dark:bg-gray-900/80"></div>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000" alt="Modern Home Exterior" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-navy/80"></div>
         </div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white reveal">
-            <span class="inline-block py-1 px-3 rounded-full bg-brand-600/20 border border-brand-500/30 text-brand-300 text-sm font-semibold tracking-wider mb-6 uppercase" data-i18n="hero-tag">Serving Greater Montreal</span>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight" data-i18n="hero-title">
-                Ultra-Modern Windows & Doors
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+            <h1 class="font-oswald text-5xl md:text-7xl font-bold uppercase leading-tight mb-6" data-i18n="hero-title">
+                Ultra-Modern Windows & Doors.
             </h1>
-            <p class="mt-4 text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 font-light leading-relaxed" data-i18n="hero-sub">
-                Transform your home with our premium, energy-efficient windows, entry doors, and garage doors. Wholesale prices with professional installation in Montreal.
+            <p class="text-lg md:text-xl text-slate-200 mb-10 font-light" data-i18n="hero-sub">
+                Wholesale prices and professional installation for premium windows, entry doors, and garage doors in Greater Montreal.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white rounded-lg font-semibold text-lg transition-all shadow-lg hover:shadow-brand-500/30" data-i18n="hero-cta">Get a Free Quote</a>
-                <a href="tel:514-629-5689" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white rounded-lg font-semibold text-lg transition-all flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-phone"></i> 514-629-5689
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="bg-blue-500 hover:bg-blue-600 text-white font-oswald uppercase tracking-widest px-8 py-4 rounded font-semibold transition-all shadow-lg hover:-translate-y-1" data-i18n="hero-cta1">
+                    Get a Free Quote
+                </a>
+                <a href="#services" class="border-2 border-white hover:bg-white hover:text-navy text-white font-oswald uppercase tracking-widest px-8 py-4 rounded font-semibold transition-all" data-i18n="hero-cta2">
+                    View Services
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-white dark:bg-gray-900">
+    <!-- Trust Bar -->
+    <div class="bg-slate-dark text-white py-6 border-b-4 border-blue-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white" data-i18n="about-title">About ZY Windows Montreal</h2>
-                    <div class="w-20 h-1 bg-brand-600 mb-8 rounded"></div>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6 leading-relaxed" data-i18n="about-text1">
-                        Located in the heart of Montreal, ZY Windows is your trusted partner for high-quality residential and commercial upgrades. We specialize in wholesale windows and doors, offering the absolute best rates available in the city.
-                    </p>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed" data-i18n="about-text2">
-                        Whether you need a sleek new modern entry door, energy-saving windows to brave the Quebec winter, or a robust automated garage door, our expert installation team ensures perfection from start to finish.
-                    </p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-center text-gray-700 dark:text-gray-300">
-                            <i class="fa-solid fa-check-circle text-brand-600 dark:text-brand-500 mr-3 text-xl"></i>
-                            <span data-i18n="about-point1">Wholesale Pricing for the Public</span>
-                        </li>
-                        <li class="flex items-center text-gray-700 dark:text-gray-300">
-                            <i class="fa-solid fa-check-circle text-brand-600 dark:text-brand-500 mr-3 text-xl"></i>
-                            <span data-i18n="about-point2">Professional, Clean Installation</span>
-                        </li>
-                        <li class="flex items-center text-gray-700 dark:text-gray-300">
-                            <i class="fa-solid fa-check-circle text-brand-600 dark:text-brand-500 mr-3 text-xl"></i>
-                            <span data-i18n="about-point3">Serving Montreal & Surrounding Areas</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="relative reveal delay-200">
-                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1000" alt="Modern Interior Windows" class="rounded-2xl shadow-2xl object-cover h-[500px] w-full">
-                    <div class="absolute -bottom-6 -left-6 bg-brand-600 text-white p-8 rounded-2xl shadow-xl hidden md:block">
-                        <p class="text-4xl font-bold mb-1">100%</p>
-                        <p class="text-brand-100 font-medium" data-i18n="about-badge">Satisfaction Guaranteed</p>
-                    </div>
-                </div>
+            <div class="flex flex-wrap justify-around items-center gap-6 font-oswald text-lg uppercase tracking-wide">
+                <div class="flex items-center gap-3"><i class="fas fa-certificate text-blue-500 text-2xl"></i> <span data-i18n="trust-1">Fully Licensed</span></div>
+                <div class="flex items-center gap-3"><i class="fas fa-shield-alt text-blue-500 text-2xl"></i> <span data-i18n="trust-2">Insured & Bonded</span></div>
+                <div class="flex items-center gap-3"><i class="fas fa-star text-blue-500 text-2xl"></i> <span data-i18n="trust-3">5-Star Rated</span></div>
+                <div class="flex items-center gap-3"><i class="fas fa-handshake text-blue-500 text-2xl"></i> <span data-i18n="trust-4">Satisfaction Guaranteed</span></div>
             </div>
+        </div>
+    </div>
+
+    <!-- About Snippet -->
+    <section class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-oswald text-3xl text-navy uppercase mb-4" data-i18n="about-title">Wholesale Rates for the Public</h2>
+            <div class="h-1 w-20 bg-blue-500 mx-auto mb-6"></div>
+            <p class="text-slate-600 text-lg leading-relaxed" data-i18n="about-text">
+                Located in the heart of Montreal, ZY Windows is your trusted partner for high-quality residential and commercial upgrades. We specialize in wholesale windows and doors, offering the absolute best rates available in the city with a clean, professional installation process.
+            </p>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <section id="services" class="py-20 bg-slate-bg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white" data-i18n="services-title">Our Premium Services</h2>
-                <div class="w-20 h-1 bg-brand-600 mx-auto rounded"></div>
-                <p class="mt-6 text-lg text-gray-600 dark:text-gray-400" data-i18n="services-sub">We provide top-tier products designed for aesthetics, security, and extreme energy efficiency.</p>
+            <div class="text-center mb-16">
+                <h2 class="font-oswald text-4xl text-navy uppercase mb-4" data-i18n="services-title">Our Services</h2>
+                <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Windows Card -->
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal">
-                    <div class="w-16 h-16 bg-brand-50 dark:bg-brand-900/30 rounded-xl flex items-center justify-center mb-6 text-brand-600 dark:text-brand-500 text-3xl">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Windows -->
+                <div class="service-card bg-white p-10 text-center rounded shadow-sm">
+                    <div class="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
                         <i class="fa-solid fa-border-all"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4" data-i18n="srv-win-title">Modern Windows</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed" data-i18n="srv-win-desc">
-                        Energy-efficient, noise-reducing, and visually stunning thermal windows tailored specifically for Montreal's harsh winters and warm summers.
-                    </p>
+                    <h3 class="font-oswald text-2xl text-navy uppercase mb-4" data-i18n="srv-win-title">Modern Windows</h3>
+                    <p class="text-slate-500 mb-6" data-i18n="srv-win-desc">Energy-efficient, noise-reducing thermal windows tailored for Montreal's extreme weather conditions.</p>
                 </div>
 
-                <!-- Doors Card -->
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal delay-100">
-                    <div class="w-16 h-16 bg-brand-50 dark:bg-brand-900/30 rounded-xl flex items-center justify-center mb-6 text-brand-600 dark:text-brand-500 text-3xl">
+                <!-- Doors -->
+                <div class="service-card bg-white p-10 text-center rounded shadow-sm">
+                    <div class="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
                         <i class="fa-solid fa-door-closed"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4" data-i18n="srv-door-title">Premium Doors</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed" data-i18n="srv-door-desc">
-                        Secure, durable, and elegant entry doors, patio doors, and custom solutions that enhance your curb appeal and home security.
-                    </p>
+                    <h3 class="font-oswald text-2xl text-navy uppercase mb-4" data-i18n="srv-door-title">Premium Doors</h3>
+                    <p class="text-slate-500 mb-6" data-i18n="srv-door-desc">Secure, durable, and elegant entry doors, patio doors, and custom architectural solutions.</p>
                 </div>
 
-                <!-- Garage Doors Card -->
-                <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow reveal delay-200">
-                    <div class="w-16 h-16 bg-brand-50 dark:bg-brand-900/30 rounded-xl flex items-center justify-center mb-6 text-brand-600 dark:text-brand-500 text-3xl">
+                <!-- Garage Doors -->
+                <div class="service-card bg-white p-10 text-center rounded shadow-sm">
+                    <div class="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">
                         <i class="fa-solid fa-warehouse"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4" data-i18n="srv-gar-title">Garage Doors</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed" data-i18n="srv-gar-desc">
-                        State-of-the-art automated, insulated garage doors that blend seamlessly with ultra-modern architectural designs. Reliable expertise guaranteed.
-                    </p>
+                    <h3 class="font-oswald text-2xl text-navy uppercase mb-4" data-i18n="srv-gar-title">Garage Doors</h3>
+                    <p class="text-slate-500 mb-6" data-i18n="srv-gar-desc">State-of-the-art automated, insulated garage doors blending perfectly with modern home designs.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-24 bg-white dark:bg-gray-900">
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white" data-i18n="gallery-title">Project Gallery</h2>
-                <div class="w-20 h-1 bg-brand-600 mx-auto rounded"></div>
+            <div class="text-center mb-16">
+                <h2 class="font-oswald text-4xl text-navy uppercase mb-4" data-i18n="gallery-title">Recent Projects</h2>
+                <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="gallery-item overflow-hidden rounded-2xl shadow-md cursor-pointer reveal">
-                    <img src="https://images.unsplash.com/photo-1534138138814-22d73ce185cd?auto=format&fit=crop&q=80&w=800" alt="Modern Entry Door" class="w-full h-72 object-cover gallery-img">
+                <div class="portfolio-item rounded h-[300px]">
+                    <img src="https://images.unsplash.com/photo-1534138138814-22d73ce185cd?auto=format&fit=crop&q=80&w=800" alt="Project 1" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <div>
+                            <h4 class="font-oswald text-xl text-white uppercase" data-i18n="proj-1-title">Modern Entry Door</h4>
+                            <p class="text-blue-500 font-bold text-sm" data-i18n="proj-label">Installation</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="gallery-item overflow-hidden rounded-2xl shadow-md cursor-pointer reveal delay-100">
-                    <img src="https://images.unsplash.com/photo-1605276374104-162f1c4cb3e5?auto=format&fit=crop&q=80&w=800" alt="Modern Garage Door" class="w-full h-72 object-cover gallery-img">
+                <div class="portfolio-item rounded h-[300px]">
+                    <img src="https://images.unsplash.com/photo-1605276374104-162f1c4cb3e5?auto=format&fit=crop&q=80&w=800" alt="Project 2" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <div>
+                            <h4 class="font-oswald text-xl text-white uppercase" data-i18n="proj-2-title">Insulated Garage</h4>
+                            <p class="text-blue-500 font-bold text-sm" data-i18n="proj-label">Installation</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="gallery-item overflow-hidden rounded-2xl shadow-md cursor-pointer reveal delay-200">
-                    <img src="https://images.unsplash.com/photo-1502005097973-f5a02bc73307?auto=format&fit=crop&q=80&w=800" alt="Interior Window Design" class="w-full h-72 object-cover gallery-img">
-                </div>
-                <div class="gallery-item overflow-hidden rounded-2xl shadow-md cursor-pointer reveal">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800" alt="Large Office Windows" class="w-full h-72 object-cover gallery-img">
-                </div>
-                <div class="gallery-item overflow-hidden rounded-2xl shadow-md cursor-pointer reveal delay-100">
-                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=800" alt="Living Room Window View" class="w-full h-72 object-cover gallery-img">
-                </div>
-                <div class="gallery-item overflow-hidden rounded-2xl shadow-md cursor-pointer reveal delay-200">
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800" alt="Exterior Home Architecture" class="w-full h-72 object-cover gallery-img">
+                <div class="portfolio-item rounded h-[300px]">
+                    <img src="https://images.unsplash.com/photo-1502005097973-f5a02bc73307?auto=format&fit=crop&q=80&w=800" alt="Project 3" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <div>
+                            <h4 class="font-oswald text-xl text-white uppercase" data-i18n="proj-3-title">Thermal Windows</h4>
+                            <p class="text-blue-500 font-bold text-sm" data-i18n="proj-label">Installation</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Form Section -->
-    <section id="contact" class="py-24 bg-gray-50 dark:bg-gray-800">
+    <!-- Testimonials Section -->
+    <section id="reviews" class="py-20 bg-navy text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden reveal">
-                <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="text-center mb-16">
+                <h2 class="font-oswald text-4xl text-white uppercase mb-4" data-i18n="reviews-title">What Neighbors Say</h2>
+                <div class="h-1 w-20 bg-blue-500 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white/5 border border-white/10 p-8 rounded">
+                    <div class="text-blue-500 mb-4 text-lg">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic text-slate-300 mb-6" data-i18n="rev-1-text">
+                        "Got all our front windows replaced. The crew was fast, clean, and the wholesale pricing actually saved us thousands compared to other quotes in Montreal."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <h5 class="font-oswald text-lg uppercase tracking-wide">Marc Tremblay</h5>
+                            <span class="text-blue-500 text-sm" data-i18n="rev-homeowner">Homeowner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white/5 border border-white/10 p-8 rounded">
+                    <div class="text-blue-500 mb-4 text-lg">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic text-slate-300 mb-6" data-i18n="rev-2-text">
+                        "Absolutely love our new insulated garage door. The difference in temperature is massive. Highly recommend their installation team."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <h5 class="font-oswald text-lg uppercase tracking-wide">David Chen</h5>
+                            <span class="text-blue-500 text-sm" data-i18n="rev-biz">Business Owner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white/5 border border-white/10 p-8 rounded">
+                    <div class="text-blue-500 mb-4 text-lg">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="italic text-slate-300 mb-6" data-i18n="rev-3-text">
+                        "They installed a massive modern front entry door for us. The quality is solid, and there was no upselling. Just honest, excellent work."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <h5 class="font-oswald text-lg uppercase tracking-wide">Sarah Jenkins</h5>
+                            <span class="text-blue-500 text-sm" data-i18n="rev-homeowner">Homeowner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Netlify Form -->
+                <div class="bg-white p-8 md:p-12 rounded shadow-md border-t-4 border-blue-500">
+                    <h3 class="font-oswald text-3xl text-navy uppercase mb-2" data-i18n="contact-title">Get A Free Estimate</h3>
+                    <p class="text-slate-500 mb-8" data-i18n="contact-desc">Fill out the form below or call us for immediate service.</p>
                     
-                    <!-- Contact Info -->
-                    <div class="p-12 lg:p-16 bg-brand-600 text-white flex flex-col justify-center">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6" data-i18n="contact-title">Get In Touch</h2>
-                        <p class="text-brand-100 mb-10 text-lg" data-i18n="contact-desc">
-                            Ready to upgrade? Fill out the form or call us directly. We offer the best wholesale rates in Montreal, guaranteed.
-                        </p>
+                    <form name="quote" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
+                        <input type="hidden" name="form-name" value="quote" />
+                        <p class="hidden"><label>Don’t fill this out if you're human: <input name="bot-field" /></label></p>
+
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2" data-i18n="form-name">Full Name</label>
+                            <input type="text" name="name" required class="w-full px-4 py-3 rounded border border-slate-300 text-base focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                        </div>
                         
-                        <div class="space-y-6">
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-6">
-                                    <i class="fa-solid fa-phone text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-brand-200 uppercase tracking-wider font-semibold" data-i18n="contact-phone-lbl">Phone</p>
-                                    <a href="tel:514-629-5689" class="text-xl font-bold hover:underline">514 629-5689</a>
-                                </div>
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2" data-i18n="form-phone">Phone Number</label>
+                            <input type="tel" name="phone" required class="w-full px-4 py-3 rounded border border-slate-300 text-base focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2" data-i18n="form-service">Service Needed</label>
+                            <select name="service" class="w-full px-4 py-3 rounded border border-slate-300 text-base focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white">
+                                <option value="windows" data-i18n="opt-win">Window Installation</option>
+                                <option value="doors" data-i18n="opt-door">Entry / Patio Doors</option>
+                                <option value="garage" data-i18n="opt-gar">Garage Door Installation</option>
+                                <option value="other" data-i18n="opt-other">Other / General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-oswald uppercase tracking-widest font-bold py-4 px-6 rounded transition-colors shadow-md" data-i18n="form-submit">
+                            Request Quote
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info Box -->
+                <div class="flex flex-col justify-center">
+                    <h3 class="font-oswald text-3xl text-navy uppercase mb-8" data-i18n="info-title">Contact Information</h3>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-map-marker-alt text-blue-500 text-2xl mt-1"></i>
+                            <div>
+                                <strong class="text-navy text-lg block mb-1" data-i18n="info-area">Service Area</strong>
+                                <span class="text-slate-600" data-i18n="info-area-txt">Serving Greater Montreal, Laval & South Shore</span>
                             </div>
-                            
-                            <div class="flex items-center">
-                                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-6">
-                                    <i class="fa-solid fa-location-dot text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-brand-200 uppercase tracking-wider font-semibold" data-i18n="contact-loc-lbl">Location</p>
-                                    <p class="text-xl font-bold">Montreal, Quebec, Canada</p>
-                                </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-phone text-blue-500 text-2xl mt-1"></i>
+                            <div>
+                                <strong class="text-navy text-lg block mb-1" data-i18n="info-phone">Phone</strong>
+                                <span class="text-slate-600">514-629-5689</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-clock text-blue-500 text-2xl mt-1"></i>
+                            <div>
+                                <strong class="text-navy text-lg block mb-1" data-i18n="info-hours">Hours</strong>
+                                <span class="text-slate-600 block">Mon-Fri: 8am - 6pm</span>
+                                <span class="text-slate-600 block">Sat: 9am - 3pm</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Netlify Form -->
-                    <div class="p-12 lg:p-16">
-                        <!-- 'data-netlify="true"' ensures Netlify forms parses this automatically -->
-                        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-6">
-                            <input type="hidden" name="form-name" value="contact" />
-                            <p class="hidden">
-                                <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-                            </p>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="form-name">Full Name</label>
-                                    <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors">
-                                </div>
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="form-phone">Phone Number</label>
-                                    <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="form-email">Email Address</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors">
-                            </div>
-
-                            <div>
-                                <label for="service" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="form-service">Interested In...</label>
-                                <select id="service" name="service" class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors">
-                                    <option value="windows" data-i18n="opt-win">Windows</option>
-                                    <option value="doors" data-i18n="opt-door">Entry / Patio Doors</option>
-                                    <option value="garage" data-i18n="opt-gar">Garage Doors</option>
-                                    <option value="other" data-i18n="opt-other">Other / General Inquiry</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" data-i18n="form-msg">Your Message</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-colors"></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-bold py-4 px-6 rounded-lg transition-colors shadow-md" data-i18n="form-submit">
-                                Send Message
-                            </button>
-                        </form>
+                    <!-- Map Placeholder -->
+                    <div class="mt-10 w-full h-48 bg-slate-200 rounded flex items-center justify-center text-slate-500">
+                        <i class="fas fa-map-marked-alt text-2xl mr-3"></i> <span data-i18n="info-map">Montreal, QC</span>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-layer-group text-brand-500 text-2xl"></i>
-                <span class="font-bold text-xl tracking-tight">ZY<span class="text-brand-500">WINDOWS</span></span>
-            </div>
-            <p class="text-gray-400 text-sm text-center" data-i18n="footer-text">
-                &copy; 2026 ZY Windows Montreal. All rights reserved. Wholesale Windows & Doors.
-            </p>
-            <div class="flex space-x-4">
-                <a href="#" class="text-gray-400 hover:text-brand-500 transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-brand-500 transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
-                <a href="#" class="text-gray-400 hover:text-brand-500 transition-colors"><i class="fa-brands fa-google text-xl"></i></a>
-            </div>
+    <footer class="bg-navy py-10 border-t border-slate-700 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <p class="text-slate-400 mb-2" data-i18n="footer-text">&copy; 2026 ZY Windows Montreal. All Rights Reserved.</p>
+            <p class="text-slate-500 text-sm font-light" data-i18n="footer-sub">Wholesale Windows, Entry Doors & Garage Doors.</p>
         </div>
     </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <a href="tel:5146295689" class="mobile-cta lg:hidden fixed bottom-6 right-6 bg-blue-500 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl z-[999]">
+        <i class="fas fa-phone"></i>
+    </a>
 
     <!-- Scripts -->
     <script>
@@ -390,97 +441,115 @@
         const translations = {
             en: {
                 "nav-home": "Home",
-                "nav-about": "About",
                 "nav-services": "Services",
-                "nav-gallery": "Gallery",
-                "nav-contact": "Contact",
-                "hero-tag": "Serving Greater Montreal",
-                "hero-title": "Ultra-Modern Windows & Doors",
-                "hero-sub": "Transform your home with our premium, energy-efficient windows, entry doors, and garage doors. Wholesale prices with professional installation in Montreal.",
-                "hero-cta": "Get a Free Quote",
-                "about-title": "About ZY Windows Montreal",
-                "about-text1": "Located in the heart of Montreal, ZY Windows is your trusted partner for high-quality residential and commercial upgrades. We specialize in wholesale windows and doors, offering the absolute best rates available in the city.",
-                "about-text2": "Whether you need a sleek new modern entry door, energy-saving windows to brave the Quebec winter, or a robust automated garage door, our expert installation team ensures perfection from start to finish.",
-                "about-point1": "Wholesale Pricing for the Public",
-                "about-point2": "Professional, Clean Installation",
-                "about-point3": "Serving Montreal & Surrounding Areas",
-                "about-badge": "Satisfaction Guaranteed",
-                "services-title": "Our Premium Services",
-                "services-sub": "We provide top-tier products designed for aesthetics, security, and extreme energy efficiency.",
+                "nav-gallery": "Our Work",
+                "nav-reviews": "Reviews",
+                "hero-title": "Ultra-Modern Windows & Doors.",
+                "hero-sub": "Wholesale prices and professional installation for premium windows, entry doors, and garage doors in Greater Montreal.",
+                "hero-cta1": "Get a Free Quote",
+                "hero-cta2": "View Services",
+                "trust-1": "Fully Licensed",
+                "trust-2": "Insured & Bonded",
+                "trust-3": "5-Star Rated",
+                "trust-4": "Satisfaction Guaranteed",
+                "about-title": "Wholesale Rates for the Public",
+                "about-text": "Located in the heart of Montreal, ZY Windows is your trusted partner for high-quality residential and commercial upgrades. We specialize in wholesale windows and doors, offering the absolute best rates available in the city with a clean, professional installation process.",
+                "services-title": "Our Services",
                 "srv-win-title": "Modern Windows",
-                "srv-win-desc": "Energy-efficient, noise-reducing, and visually stunning thermal windows tailored specifically for Montreal's harsh winters and warm summers.",
+                "srv-win-desc": "Energy-efficient, noise-reducing thermal windows tailored for Montreal's extreme weather conditions.",
                 "srv-door-title": "Premium Doors",
-                "srv-door-desc": "Secure, durable, and elegant entry doors, patio doors, and custom solutions that enhance your curb appeal and home security.",
+                "srv-door-desc": "Secure, durable, and elegant entry doors, patio doors, and custom architectural solutions.",
                 "srv-gar-title": "Garage Doors",
-                "srv-gar-desc": "State-of-the-art automated, insulated garage doors that blend seamlessly with ultra-modern architectural designs. Reliable expertise guaranteed.",
-                "gallery-title": "Project Gallery",
-                "contact-title": "Get In Touch",
-                "contact-desc": "Ready to upgrade? Fill out the form or call us directly. We offer the best wholesale rates in Montreal, guaranteed.",
-                "contact-phone-lbl": "Phone",
-                "contact-loc-lbl": "Location",
+                "srv-gar-desc": "State-of-the-art automated, insulated garage doors blending perfectly with modern home designs.",
+                "gallery-title": "Recent Projects",
+                "proj-1-title": "Modern Entry Door",
+                "proj-2-title": "Insulated Garage",
+                "proj-3-title": "Thermal Windows",
+                "proj-label": "Installation",
+                "reviews-title": "What Neighbors Say",
+                "rev-1-text": '"Got all our front windows replaced. The crew was fast, clean, and the wholesale pricing actually saved us thousands compared to other quotes in Montreal."',
+                "rev-2-text": '"Absolutely love our new insulated garage door. The difference in temperature is massive. Highly recommend their installation team."',
+                "rev-3-text": '"They installed a massive modern front entry door for us. The quality is solid, and there was no upselling. Just honest, excellent work."',
+                "rev-homeowner": "Homeowner",
+                "rev-biz": "Business Owner",
+                "contact-title": "Get A Free Estimate",
+                "contact-desc": "Fill out the form below or call us for immediate service.",
                 "form-name": "Full Name",
                 "form-phone": "Phone Number",
-                "form-email": "Email Address",
-                "form-service": "Interested In...",
-                "opt-win": "Windows",
+                "form-service": "Service Needed",
+                "opt-win": "Window Installation",
                 "opt-door": "Entry / Patio Doors",
-                "opt-gar": "Garage Doors",
+                "opt-gar": "Garage Door Installation",
                 "opt-other": "Other / General Inquiry",
-                "form-msg": "Your Message",
-                "form-submit": "Send Message",
-                "footer-text": "© 2026 ZY Windows Montreal. All rights reserved. Wholesale Windows & Doors."
+                "form-submit": "Request Quote",
+                "info-title": "Contact Information",
+                "info-area": "Service Area",
+                "info-area-txt": "Serving Greater Montreal, Laval & South Shore",
+                "info-phone": "Phone",
+                "info-hours": "Hours",
+                "info-map": "Montreal, QC",
+                "footer-text": "© 2026 ZY Windows Montreal. All Rights Reserved.",
+                "footer-sub": "Wholesale Windows, Entry Doors & Garage Doors."
             },
             fr: {
                 "nav-home": "Accueil",
-                "nav-about": "À Propos",
                 "nav-services": "Services",
-                "nav-gallery": "Galerie",
-                "nav-contact": "Contact",
-                "hero-tag": "Au service du Grand Montréal",
-                "hero-title": "Fenêtres et Portes Ultra-Modernes",
-                "hero-sub": "Transformez votre maison avec nos fenêtres, portes d'entrée et de garage écoénergétiques haut de gamme. Prix de gros avec installation professionnelle à Montréal.",
-                "hero-cta": "Obtenir une soumission",
-                "about-title": "À Propos de ZY Windows Montréal",
-                "about-text1": "Situé au cœur de Montréal, ZY Windows est votre partenaire de confiance pour des rénovations résidentielles et commerciales de haute qualité. Nous nous spécialisons dans les fenêtres et portes en gros, offrant les meilleurs tarifs en ville.",
-                "about-text2": "Que vous ayez besoin d'une nouvelle porte d'entrée moderne, de fenêtres écoénergétiques pour braver l'hiver québécois, ou d'une porte de garage robuste, notre équipe experte assure une installation parfaite.",
-                "about-point1": "Prix de gros pour le public",
-                "about-point2": "Installation professionnelle et soignée",
-                "about-point3": "Desservant Montréal et les environs",
-                "about-badge": "Satisfaction Garantie",
-                "services-title": "Nos Services Haut de Gamme",
-                "services-sub": "Nous fournissons des produits de premier ordre conçus pour l'esthétique, la sécurité et l'efficacité énergétique extrême.",
+                "nav-gallery": "Réalisations",
+                "nav-reviews": "Avis",
+                "hero-title": "Fenêtres et Portes Ultra-Modernes.",
+                "hero-sub": "Prix de gros et installation professionnelle pour fenêtres, portes d'entrée et portes de garage haut de gamme dans le Grand Montréal.",
+                "hero-cta1": "Obtenir une soumission",
+                "hero-cta2": "Voir les Services",
+                "trust-1": "Entièrement Agréé",
+                "trust-2": "Assuré et Cautionné",
+                "trust-3": "Évalué 5 Étoiles",
+                "trust-4": "Satisfaction Garantie",
+                "about-title": "Tarifs de gros pour le public",
+                "about-text": "Situé au cœur de Montréal, ZY Windows est votre partenaire de confiance pour des rénovations résidentielles et commerciales de haute qualité. Nous offrons les meilleurs tarifs en ville avec une installation propre et professionnelle.",
+                "services-title": "Nos Services",
                 "srv-win-title": "Fenêtres Modernes",
-                "srv-win-desc": "Fenêtres thermiques écoénergétiques, insonorisantes et visuellement superbes, conçues spécifiquement pour les hivers rigoureux de Montréal.",
+                "srv-win-desc": "Fenêtres thermiques écoénergétiques et insonorisantes conçues pour les conditions météorologiques extrêmes de Montréal.",
                 "srv-door-title": "Portes Haut de Gamme",
-                "srv-door-desc": "Portes d'entrée et de patio sécuritaires, durables et élégantes qui rehaussent l'attrait et la sécurité de votre maison.",
+                "srv-door-desc": "Portes d'entrée et portes patio sécuritaires, durables et élégantes, ainsi que des solutions architecturales sur mesure.",
                 "srv-gar-title": "Portes de Garage",
-                "srv-gar-desc": "Portes de garage isolées et automatisées de pointe qui s'intègrent parfaitement aux conceptions architecturales ultra-modernes.",
-                "gallery-title": "Galerie de Projets",
-                "contact-title": "Contactez-Nous",
-                "contact-desc": "Prêt pour un changement ? Remplissez le formulaire ou appelez-nous directement. Les meilleurs tarifs de gros à Montréal, garantis.",
-                "contact-phone-lbl": "Téléphone",
-                "contact-loc-lbl": "Emplacement",
+                "srv-gar-desc": "Portes de garage isolées et automatisées de pointe qui s'intègrent parfaitement aux conceptions de maisons modernes.",
+                "gallery-title": "Projets Récents",
+                "proj-1-title": "Porte d'entrée moderne",
+                "proj-2-title": "Garage Isolé",
+                "proj-3-title": "Fenêtres Thermiques",
+                "proj-label": "Installation",
+                "reviews-title": "Ce que disent nos clients",
+                "rev-1-text": '"Nous avons remplacé toutes nos fenêtres avant. L\'équipe a été rapide, propre, et les prix de gros nous ont fait économiser des milliers de dollars par rapport aux autres soumissions."',
+                "rev-2-text": '"Nous adorons notre nouvelle porte de garage isolée. La différence de température est énorme. Je recommande fortement leur équipe."',
+                "rev-3-text": '"Ils ont installé une grande porte d\'entrée moderne pour nous. La qualité est solide, pas de vente incitative. Juste un excellent travail honnête."',
+                "rev-homeowner": "Propriétaire",
+                "rev-biz": "Propriétaire d'entreprise",
+                "contact-title": "Obtenez une estimation",
+                "contact-desc": "Remplissez le formulaire ci-dessous ou appelez-nous pour un service immédiat.",
                 "form-name": "Nom Complet",
                 "form-phone": "Numéro de Téléphone",
-                "form-email": "Adresse Courriel",
-                "form-service": "Intéressé par...",
-                "opt-win": "Fenêtres",
+                "form-service": "Service Requis",
+                "opt-win": "Installation de fenêtres",
                 "opt-door": "Portes d'entrée / Patio",
-                "opt-gar": "Portes de Garage",
+                "opt-gar": "Installation de porte de garage",
                 "opt-other": "Autre / Demande Générale",
-                "form-msg": "Votre Message",
-                "form-submit": "Envoyer le Message",
-                "footer-text": "© 2026 ZY Windows Montréal. Tous droits réservés. Fenêtres et Portes en Gros."
+                "form-submit": "Demander une soumission",
+                "info-title": "Coordonnées",
+                "info-area": "Zone de Service",
+                "info-area-txt": "Desservant le Grand Montréal, Laval et la Rive-Sud",
+                "info-phone": "Téléphone",
+                "info-hours": "Heures d'ouverture",
+                "info-map": "Montréal, QC",
+                "footer-text": "© 2026 ZY Windows Montréal. Tous droits réservés.",
+                "footer-sub": "Fenêtres et Portes en Gros."
             }
         };
 
-        let currentLang = 'en';
-
+        // --- Language Toggle Logic ---
         function setLanguage(lang) {
-            currentLang = lang;
             document.documentElement.lang = lang;
             
-            // Translate elements by data-i18n attribute
+            // Translate elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
@@ -488,89 +557,49 @@
                 }
             });
 
-            // Update language toggle buttons UI
+            // Desktop Buttons
             const btnEn = document.getElementById('btn-en');
             const btnFr = document.getElementById('btn-fr');
+            // Mobile Buttons
+            const btnEnMob = document.getElementById('btn-en-mob');
+            const btnFrMob = document.getElementById('btn-fr-mob');
             
             if (lang === 'en') {
-                btnEn.classList.add('text-brand-600', 'font-bold');
-                btnEn.classList.remove('text-gray-500');
-                btnFr.classList.add('text-gray-500');
-                btnFr.classList.remove('text-brand-600', 'font-bold');
+                btnEn.classList.add('lang-active', 'font-bold'); btnFr.classList.remove('lang-active', 'font-bold');
+                btnEnMob.classList.add('lang-active', 'font-bold'); btnFrMob.classList.remove('lang-active', 'font-bold');
             } else {
-                btnFr.classList.add('text-brand-600', 'font-bold');
-                btnFr.classList.remove('text-gray-500');
-                btnEn.classList.add('text-gray-500');
-                btnEn.classList.remove('text-brand-600', 'font-bold');
+                btnFr.classList.add('lang-active', 'font-bold'); btnEn.classList.remove('lang-active', 'font-bold');
+                btnFrMob.classList.add('lang-active', 'font-bold'); btnEnMob.classList.remove('lang-active', 'font-bold');
             }
         }
 
-        // Initialize Language
+        // Initialize default language
         setLanguage('en');
-
-        // --- Theme Toggle Logic ---
-        const themeToggleBtns = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
-        const themeIcons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')];
-        
-        // Check for saved user preference, if any, on load of the website
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            themeIcons.forEach(icon => { icon.classList.remove('fa-moon'); icon.classList.add('fa-sun'); });
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        themeToggleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                let isDark = document.documentElement.classList.contains('dark');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                
-                themeIcons.forEach(icon => {
-                    if (isDark) {
-                        icon.classList.remove('fa-moon');
-                        icon.classList.add('fa-sun');
-                    } else {
-                        icon.classList.remove('fa-sun');
-                        icon.classList.add('fa-moon');
-                    }
-                });
-            });
-        });
 
         // --- Mobile Menu Toggle ---
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const icon = mobileBtn.querySelector('i');
 
         mobileBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
         });
 
-        // Close mobile menu on link click
+        // Close menu on link click
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             });
         });
-
-        // --- Scroll Reveal Animation ---
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // how many pixels to show before animating
-                
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-
-        window.addEventListener("scroll", reveal);
-        // Trigger once on load
-        reveal();
-
     </script>
 </body>
 </html>
